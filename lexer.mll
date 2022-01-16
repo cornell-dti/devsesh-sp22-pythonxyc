@@ -1,3 +1,11 @@
+(*
+
+Look for a list of Tasks!
+
+
+*)
+
+
 (* header *)
 {
   open Printf
@@ -78,25 +86,24 @@ let _false_ = "False"
 
 let _escape = "\\"
 
-let _alphabet = ['a'-'z' 'A'-'Z']
-
-let _specialchars = [ ^ 'A'-'Z' 'a'-'z' '0'-'9']
+let _alphabet = (* Task 0 (warmup): can you define the set of characters represnting the alphabet? *)
 
 let _digit = ['0' - '9']
 
 let _integer = ['1' - '9'] _digit* | "0"
+(* Task 1: how do we add support for floats/doubles? *)
 
 let _underscore = "_"
 
 let _squote = "'" | "’"
 let _dquote = '"'
 
-let _newline = _escape "n"
+let _newline = _escape "n"                    (* \n *)
 
 let _tab = _escape "t"
-let _escapedescape = _escape _escape
-let _escapedquote = _escape "'"
-let _escapesquote = _escape "\""
+let _escapedescape = _escape _escape          (* \\ *)
+let _escapedquote = _escape "'"               (* \" *)
+let _escapesquote = _escape "\""              (* \' *)
 let _hexa = (_alphabet | _digit)
 (* needs at least 1 character for the hex in the escaped sequence, at most 4 *)
 let _uptofourhexadecimals = _hexa _hexa? _hexa? _hexa?
@@ -104,12 +111,29 @@ let _unicode = _escape "x" _uptofourhexadecimals
 
 let _escapes = _newline | _tab | _escapedescape | _escapedquote | _escapesquote | _unicode
 
-let _string_ = _dquote (_escapes | [^ '\\' '"'])* _dquote
+(* Task 2: represent strings correctly!*)
+(* Valid strings
+
+"abcdef23423", "\x1234", "\tand said the raven 'Nevermore'"
+
+Invalid strings
+\dfsidf", '", "', 
+*)
+let _string_ = ...
 
 let _digit_ = ['0'-'9']
-(* let _int_ = ['1'-'9']*['0'-'9'] *)
-(* let _float_ = ['1'-'9']*['0'-'9']"."['0'-'9']+ *)
+
+(* Task 3: can we correct the definition of _int_? *)
+
+(*
+Valid:
+0, 00, 10, 93, 420
+Invalid:
+01, 002, 0003, ...
+*)
+
 let _int_ = _digit_+
+
 let _float_ = _digit_+"."_digit_+
 let _var_ = _alphabet (_alphabet | _digit | _underscore | _squote)*
 
