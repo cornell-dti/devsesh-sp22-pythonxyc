@@ -91,7 +91,7 @@ let _alphabet = (* Task 0 (warmup): can you define the set of characters represn
 let _digit = ['0' - '9']
 
 let _integer = ['1' - '9'] _digit* | "0"
-(* Task 1: how do we add support for floats/doubles? *)
+(* Task 1 (optional): how do we add support for floats/doubles? *)
 
 let _underscore = "_"
 
@@ -123,7 +123,7 @@ let _string_ = ...
 
 let _digit_ = ['0'-'9']
 
-(* Task 3: can we correct the definition of _int_? *)
+(* Task 3 (optional): can we correct the definition of _int_? *)
 
 (*
 Valid:
